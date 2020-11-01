@@ -25,9 +25,8 @@ public class CardDelivery {
         form.$("[data-test-id=phone] input").setValue("+79134568520");
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
-        $(withText("Успешно!")).waitUntil(Condition.visible,15000);
-        $("[data-test-id=notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно забронирована на " + meetingDate));
-
+        form.$(withText("Успешно!")).waitUntil(Condition.visible,15000);
+        form.$("[data-test-id=notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно забронирована на " + meetingDate));
     }
 
 }
