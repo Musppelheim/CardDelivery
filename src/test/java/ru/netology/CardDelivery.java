@@ -20,12 +20,13 @@ public class CardDelivery {
         form.$("[data-test-id=city] input").setValue("Барнаул");
         String meetingDate = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         form.$("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[placeholder=\"Дата встречи\"]").val(String.format(meetingDate, 8));
+        form.$("[placeholder='Дата встречи']").setValue(meetingDate);
         form.$("[data-test-id=name] input").setValue("Нэя Сика");
         form.$("[data-test-id=phone] input").setValue("+79134568520");
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
-        $(withText("Успешно!")).waitUntil(Condition.exist,15000);
+        $(withText("Успешно!")).waitUntil(Condition.visible,15000);
+        $("[data-test-id=notification] .notification__content").shouldHave(Condition.exactText("Встреча успешно забронирована на " + meetingDate));
 
     }
 
